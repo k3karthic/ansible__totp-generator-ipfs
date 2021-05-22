@@ -38,3 +38,15 @@
         src: publish_totp_ipfs.sh.j2
         dest: "/home/{{ ansible_ssh_user }}/bin/publish_totp_ipfs.sh"
         mode: "0700"
+
+    - name: cronjob to refresh cloudflare gateway
+      ansible.builtin.cron:
+        name: "totp ipfs refresh cloudflare"
+        job: "curl -q https://cloudflare-ipfs.com/ipns/{{ ipfs_key_id }}"
+        special_time: "hourly"
+
+    - name: cronjob to refresh ipfs.io gateway
+      ansible.builtin.cron:
+        name: "totp ipfs refresh ipfs.io"
+        job: "curl -q https://gateway.ipfs.io/ipns/{{ ipfs_key_id }}"
+        special_time: "hourly"
