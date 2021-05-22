@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+##
+## Get previous version
+##
+
+OLD_HASH=$( ipfs name resolve {{ ipfs_key_id }} | sed 's%/ipfs/%%' )
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+##
+## Unpin previous version
+##
+
+ipfs pin rm $OLD_HASH
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+##
+## Download new version
+##
+
+cd /tmp
+if [ -f index.html ]; then
+	rm index.html
+fi
+
+wget --quiet https://totp.maverickgeek.xyz/index.html
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+##
+## Add new version
+##
+
+NEW_HASH=$( ipfs add --quiet index.html | sed 's/added //' | sed 's/ index.\html//' )
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+##
+## Pin new version
+##
+
+ipfs pin add $NEW_HASH
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+##
+## Publish new version
+##
+
+ipfs name publish --key={{ ipfs_key_name }} $NEW_HASH
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+##
+## Cleanup
+##
+
+if [ -f /tmp/index.html ]; then
+	rm /tmp/index.html
+fi

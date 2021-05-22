@@ -1,0 +1,4 @@
+ssh/oracle_2
+ssh/oracle_2.pub
+files/totp.key
+inventory/group_vars/tag_ipfs_service\=yes.yml

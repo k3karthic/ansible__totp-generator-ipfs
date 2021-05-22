@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+KEY_LIST=$( ipfs key list | grep -c {{ ipfs_key_name }} )
+if [ $KEY_LIST -eq 0 ]; then
+	ipfs key import {{ipfs_key_name}} /tmp/{{ ipfs_key_name}}.key
+fi

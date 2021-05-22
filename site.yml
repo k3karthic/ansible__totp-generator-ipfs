@@ -1,0 +1,40 @@
+---
+- name: install deploy script
+  hosts: all
+
+  tasks:
+    - name: copy ipfs key
+      ansible.builtin.copy:
+        src: "{{ ipfs_key_name }}.key"
+        dest: /tmp/totp.key
+
+    - name: copy ipfs key import script
+      ansible.builtin.template:
+        src: import_ipfs_key.sh.j2
+        dest: /tmp/import_ipfs_key.sh
+        mode: "0700"
+
+    - name: import ipfs key
+      ansible.builtin.command:
+        cmd: /tmp/import_ipfs_key.sh
+
+    - name: cleanup ipfs key
+      ansible.builtin.file:
+        path: "{{ ipfs_key_name }}.key"
+        state: absent
+
+    - name: cleanup ipfs key import script
+      ansible.builtin.file:
+        path: /tmp/import_ipfs_key.sh
+        state: absent
+
+    - name: create bin directory
+      ansible.builtin.file:
+        path: "/home/{{ ansible_ssh_user }}/bin"
+        state: directory
+
+    - name: copy deploy script
+      ansible.builtin.template:
+        src: publish_totp_ipfs.sh.j2
+        dest: "/home/{{ ansible_ssh_user }}/bin/publish_totp_ipfs.sh"
+        mode: "0700"
