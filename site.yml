@@ -20,7 +20,7 @@
 
     - name: cleanup ipfs key
       ansible.builtin.file:
-        path: "{{ ipfs_key_name }}.key"
+        path: "/tmp/{{ ipfs_key_name }}.key"
         state: absent
 
     - name: cleanup ipfs key import script
