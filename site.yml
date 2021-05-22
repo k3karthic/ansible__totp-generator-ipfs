@@ -3,6 +3,21 @@
   hosts: all
 
   tasks:
+    - name: update repositories
+      become: true
+      ansible.builtin.apt:
+          cache_valid_time: 86400
+          update_cache: yes
+
+    - name: install dependencies
+      become: true
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - wget
+        - curl
+
     - name: copy ipfs key
       ansible.builtin.copy:
         src: "{{ ipfs_key_name }}.key"
