@@ -7,19 +7,19 @@ The playbook assumes the instance runs in Oracle Cloud using the terraform scrip
 
 The repository also includes `bin/deploy.sh` that executes `publish_totp_ipfs.sh` on the instance using an Ansible ad-hoc task.
 
-## Requirements
-
-Install the following Ansible modules before running the playbook,
-```
-pip install oci
-ansible-galaxy collection install oracle.oci
-```
-
 ## Dynamic Inventory
 
 This playbook uses the Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) to populate public Ubuntu instances dynamically.
 
 Public instances are assumed to have a freeform tag `ipfs_service: yes`.
+
+## Requirements
+
+Use the following commands to install the the Ansible plugin before running the playbook.
+```
+pip install oci
+ansible-galaxy collection install oracle.oci
+```
 
 ## Playbook Configuration
 
