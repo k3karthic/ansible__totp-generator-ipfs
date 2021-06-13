@@ -57,11 +57,11 @@
     - name: cronjob to refresh cloudflare gateway
       ansible.builtin.cron:
         name: "totp ipfs refresh cloudflare"
-        job: "curl -q https://cloudflare-ipfs.com/ipns/{{ ipfs_key_id }}"
+        job: "curl -s https://cloudflare-ipfs.com/ipns/{{ ipfs_key_id }}"
         special_time: "hourly"
 
     - name: cronjob to refresh ipfs.io gateway
       ansible.builtin.cron:
         name: "totp ipfs refresh ipfs.io"
-        job: "curl -q https://gateway.ipfs.io/ipns/{{ ipfs_key_id }}"
+        job: "curl -s https://gateway.ipfs.io/ipns/{{ ipfs_key_id }}"
         special_time: "hourly"
