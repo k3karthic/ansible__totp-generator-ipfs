@@ -1,6 +1,6 @@
 # Ansible - Deploy TOTP Generator to IPFS
 
-The Ansible playbook in this repository creates a bash script which can deploy [totp-generator-web](https://github.com/k3karthic/totp-generator-web) to [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [CID](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
+The Ansible playbook in this repository creates a bash script which can deploy [totp-generator-web](https://github.com/k3karthic/totp-generator-web) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [CID](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
 
 The playbook assumes the instance runs in Oracle Cloud using the terraform script below,
 * [https://github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
@@ -15,7 +15,7 @@ Public instances are assumed to have a freeform tag `ipfs_service: yes`.
 
 ## Requirements
 
-Use the following commands to install the the Ansible plugin before running the playbook.
+Use the following commands to install the the required Ansible modules and plugins before running the playbook.
 ```
 pip install oci
 ansible-galaxy collection install oracle.oci
@@ -58,13 +58,13 @@ Sensitive files like the IPFS key and SSH private keys are encrypted before bein
 
 You must add the unencrypted file paths to `.gitignore`.
 
-Use the following command to decrypt the files after cloning the repository,
+Use the following command to decrypt the files after cloning the repository.
 
 ```
 ./bin/decrypt.sh
 ```
 
-Use the following command after running terraform to update the encrypted files,
+Use the following command after running terraform to update the encrypted files.
 
 ```
 ./bin/encrypt.sh <gpg key id>
