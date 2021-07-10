@@ -15,7 +15,7 @@ Public instances are assumed to have a freeform tag `ipfs_service: yes`.
 
 ## Requirements
 
-Use the following commands to install the the required Ansible modules and plugins before running the playbook.
+Use the following commands to install the required Ansible modules and plugins before running the playbook.
 ```
 pip install oci
 ansible-galaxy collection install oracle.oci
