@@ -1,6 +1,6 @@
 # Ansible - Deploy TOTP Generator to IPFS
 
-The Ansible playbook in this repository creates a bash script which can deploy [totp-generator-web](https://github.com/k3karthic/totp-generator-web) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [CID](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
+The Ansible playbook in this repository creates a bash script which can deploy [totp-generator-web](https://github.com/k3karthic/totp-generator-web) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
 
 The playbook assumes the instance runs in Oracle Cloud using the terraform script below,
 * [https://github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
