@@ -65,3 +65,9 @@
         name: "totp ipfs refresh ipfs.io"
         job: "curl -s https://gateway.ipfs.io/ipns/{{ ipfs_key_id }} > /dev/null"
         special_time: "hourly"
+
+    - name: cronjob to refresh infura-ipfs.io gateway
+      ansible.builtin.cron:
+        name: "totp ipfs refresh ipfs.io"
+        job: "curl -s https://infura-ipfs.io/ipns/{{ ipfs_key_id }} > /dev/null"
+        special_time: "hourly"
