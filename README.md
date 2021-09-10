@@ -2,6 +2,11 @@
 
 The Ansible playbook in this repository creates a bash script which can deploy [totp-generator-web](https://github.com/k3karthic/totp-generator-web) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
 
+Demo,
+* CloudFlare: [https://cloudflare-ipfs.com/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://cloudflare-ipfs.com/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
+* Pinata: [https://gateway.pinata.cloud/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://gateway.pinata.cloud/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
+* dweb.link: [https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
+
 The playbook assumes the instance runs in Oracle Cloud using the terraform script below,
 * [https://github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
 
