@@ -1,6 +1,6 @@
 # Ansible - Deploy TOTP Generator to IPFS
 
-The Ansible playbook in this repository creates a bash script which can deploy [totp-generator-web](https://github.com/k3karthic/totp-generator-web) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
+The Ansible playbook in this repository creates a bash script which can deploy [totp.cf.maverickgeek.xyz](https://totp.cf.maverickgeek.xyz/) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
 
 Demo,
 * CloudFlare: [https://cloudflare-ipfs.com/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://cloudflare-ipfs.com/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
@@ -12,11 +12,16 @@ The playbook assumes the instance runs in Oracle Cloud using the terraform scrip
 
 The repository also includes `bin/deploy.sh` that executes `publish_totp_ipfs.sh` on the instance using an Ansible ad-hoc task.
 
+## Code Mirrors
+
+* GitHub: [github.com/k3karthic/ansible__totp-generator-ipfs](https://github.com/k3karthic/ansible__totp-generator-ipfs)
+* Codeberg: [codeberg.org/k3karthic/ansible__totp-generator-ipfs](https://codeberg.org/k3karthic/ansible__totp-generator-ipfs)
+
 ## Dynamic Inventory
 
 This playbook uses the Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) to populate public Ubuntu instances dynamically.
 
-Public instances are assumed to have a freeform tag `ipfs_service: yes`.
+All target instances are assumed to have the freeform tag `ipfs_service: yes`.
 
 ## Requirements
 
@@ -61,7 +66,7 @@ Run the playbook using the following command,
 
 Sensitive files like the IPFS key and SSH private keys are encrypted before being stored in the repository.
 
-You must add the unencrypted file paths to `.gitignore`.
+The unencrypted file paths must be added to `.gitignore`.
 
 Use the following command to decrypt the files after cloning the repository.
 
