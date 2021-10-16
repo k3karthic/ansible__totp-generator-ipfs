@@ -1,6 +1,6 @@
 # Ansible - Deploy TOTP Generator to IPFS
 
-The Ansible playbook in this repository creates a bash script which can,
+This playbook creates a bash script which can,
 * Deploy [totp.cf.maverickgeek.xyz](https://totp.cf.maverickgeek.xyz/) to [InterPlanetary File System (IPFS)](https://ipfs.io/).
 * Update the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/).
 
