@@ -1,16 +1,18 @@
 # Ansible - Deploy TOTP Generator to IPFS
 
-The Ansible playbook in this repository creates a bash script which can deploy [totp.cf.maverickgeek.xyz](https://totp.cf.maverickgeek.xyz/) to the [InterPlanetary File System (IPFS)](https://ipfs.io/) and updates the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/) using a given key.
+The Ansible playbook in this repository creates a bash script which can,
+* Deploy [totp.cf.maverickgeek.xyz](https://totp.cf.maverickgeek.xyz/) to [InterPlanetary File System (IPFS)](https://ipfs.io/).
+* Update the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/).
 
 Demo,
 * CloudFlare: [https://cloudflare-ipfs.com/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://cloudflare-ipfs.com/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
 * Pinata: [https://gateway.pinata.cloud/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://gateway.pinata.cloud/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
 * dweb.link: [https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
 
-The playbook assumes the instance runs in Oracle Cloud using the terraform script below,
+**Assumption:** The instance runs in Oracle Cloud using the terraform script below,
 * [https://github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
 
-The repository also includes `bin/deploy.sh` that executes `publish_totp_ipfs.sh` on the instance using an Ansible ad-hoc task.
+`bin/deploy.sh` uses an Ansible ad-hoc task to run `publish_totp_ipfs.sh` on the instance.
 
 ## Code Mirrors
 
@@ -19,13 +21,13 @@ The repository also includes `bin/deploy.sh` that executes `publish_totp_ipfs.sh
 
 ## Dynamic Inventory
 
-This playbook uses the Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) to populate public Ubuntu instances dynamically.
+The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) dynamically populates public Ubuntu instances.
 
-All target instances are assumed to have the freeform tag `ipfs_service: yes`.
+All target instances must have the freeform tag `ipfs_service: yes`.
 
 ## Requirements
 
-Use the following commands to install the required Ansible modules and plugins before running the playbook.
+Install the following Ansible modules and plugins before running the playbook.
 ```
 pip install oci
 ansible-galaxy collection install oracle.oci
@@ -33,14 +35,14 @@ ansible-galaxy collection install oracle.oci
 
 ## Playbook Configuration
 
-1. Modify `inventory/oracle.oci.yml`,
+1. Update `inventory/oracle.oci.yml`,
     1. specify the region where you have deployed your server on Oracle Cloud.
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File).
-1. Set username and ssh authentication in `inventory/group_vars/`.
+1. Set username and SSH authentication in `inventory/group_vars/`.
 
 ### IPNS Initialization
 
-The IPNS URL is generated based on a keypair. Follow the instructions below to create a keypair for the deployment.
+IPNS derives the public URL from a keypair. Follow the instructions below to create a keypair.
 
 Create a key using the following command and note the ID in the result,
 ```
@@ -52,7 +54,7 @@ Export the key using the following command,
 ipfs key export <name>
 ```
 
-1. Save the ID and name in `inventory/group_vars/tag_ipfs_service=yes.yml` based on the sample `inventory/group_vars/tag_ipfs_service=yes.yml.sample`.
+1. Save the ID and name in `inventory/group_vars/tag_ipfs_service=yes.yml`. Use `inventory/group_vars/tag_ipfs_service=yes.yml.sample` as a reference.
 1. Save the exported key in the `files` directory.
 
 ## Deployment
@@ -64,9 +66,7 @@ Run the playbook using the following command,
 
 ## Encryption
 
-Sensitive files like the IPFS key and SSH private keys are encrypted before being stored in the repository.
-
-The unencrypted file paths must be added to `.gitignore`.
+Encrypt sensitive files (IPFS key, SSH private keys) before saving them. `.gitignore` must contain the unencrypted file paths.
 
 Use the following command to decrypt the files after cloning the repository.
 
