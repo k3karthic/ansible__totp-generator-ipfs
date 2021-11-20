@@ -10,8 +10,9 @@ Demo,
 * dweb.link: [https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
 
 **Assumption:** The instance runs in Oracle Cloud using the terraform script below,
-* GitHub: [github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2)
-* Codeberg: [codeberg.org/k3karthic/terraform__oci-instance-2](https://codeberg.org/k3karthic/terraform__oci-instance-2)
+* terraform__oci-instance-2
+    * GitHub: [github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2)
+    * Codeberg: [codeberg.org/k3karthic/terraform__oci-instance-2](https://codeberg.org/k3karthic/terraform__oci-instance-2)
 
 `bin/deploy.sh` uses an Ansible ad-hoc task to run `publish_totp_ipfs.sh` on the instance.
 
@@ -20,12 +21,6 @@ Demo,
 * GitHub: [github.com/k3karthic/ansible__totp-generator-ipfs](https://github.com/k3karthic/ansible__totp-generator-ipfs)
 * Codeberg: [codeberg.org/k3karthic/ansible__totp-generator-ipfs](https://codeberg.org/k3karthic/ansible__totp-generator-ipfs)
 
-## Dynamic Inventory
-
-The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) dynamically populates public Ubuntu instances.
-
-All target instances must have the freeform tag `ipfs_service: yes`.
-
 ## Requirements
 
 Install the following Ansible modules and plugins before running the playbook.
@@ -33,6 +28,12 @@ Install the following Ansible modules and plugins before running the playbook.
 pip install oci
 ansible-galaxy collection install oracle.oci
 ```
+
+## Dynamic Inventory
+
+The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) dynamically populates public Ubuntu instances.
+
+All target instances must have the freeform tag `ipfs_service: yes`.
 
 ## Playbook Configuration
 
