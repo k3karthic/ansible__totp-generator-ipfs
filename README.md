@@ -23,7 +23,7 @@ Demo,
 
 ## Requirements
 
-Install the following Ansible modules and plugins before running the playbook.
+Install the following before running the playbook.
 ```
 pip install oci
 ansible-galaxy collection install oracle.oci
