@@ -25,8 +25,8 @@ Demo,
 
 Install the following before running the playbook,
 ```
-pip install oci
-ansible-galaxy collection install oracle.oci
+$ pip install oci
+$ ansible-galaxy collection install oracle.oci
 ```
 
 ## Dynamic Inventory
@@ -48,12 +48,12 @@ IPNS derives the public URL from a keypair. Follow the instructions below to cre
 
 Create a key using the following command and note the ID in the result,
 ```
-ipfs key gen <name>
+$ ipfs key gen <name>
 ```
 
 Export the key using the following command,
 ```
-ipfs key export <name>
+$ ipfs key export <name>
 ```
 
 1. Save the ID and name in `inventory/group_vars/tag_ipfs_service=yes.yml`. Use `inventory/group_vars/tag_ipfs_service=yes.yml.sample` as a reference.
@@ -63,7 +63,7 @@ ipfs key export <name>
 
 Run the playbook using the following command,
 ```
-./bin/apply.sh
+$ ./bin/apply.sh
 ```
 
 ## Encryption
@@ -73,11 +73,11 @@ Encrypt sensitive files (IPFS key, SSH private keys) before saving them. `.gitig
 Use the following command to decrypt the files after cloning the repository.
 
 ```
-./bin/decrypt.sh
+$ ./bin/decrypt.sh
 ```
 
 Use the following command after running terraform to update the encrypted files.
 
 ```
-./bin/encrypt.sh <gpg key id>
+$ ./bin/encrypt.sh <gpg key id>
 ```
