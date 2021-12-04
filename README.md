@@ -31,7 +31,7 @@ $ ansible-galaxy collection install oracle.oci
 
 ## Dynamic Inventory
 
-The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) dynamically populates public Ubuntu instances.
+The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) populates public Ubuntu instances.
 
 All target instances must have the freeform tag `ipfs_service: yes`.
 
