@@ -1,7 +1,7 @@
-# Ansible - Deploy TOTP Generator to IPFS
+# Ansible — Deploy TOTP Generator to IPFS
 
 This playbook creates a bash script which can,
-* Deploy [totp.cf.maverickgeek.xyz](https://totp.cf.maverickgeek.xyz/) to [InterPlanetary File System (IPFS)](https://ipfs.io/).
+* Deploy [totp.maverickgeek.xyz](https://totp.maverickgeek.xyz/) to [InterPlanetary File System (IPFS)](https://ipfs.io/).
 * Update the [Content Identifier (CID)](https://docs.ipfs.io/concepts/content-addressing/) in [InterPlanetary Name System (IPNS)](https://docs.ipfs.io/concepts/ipns/).
 
 Demo,
@@ -9,7 +9,7 @@ Demo,
 * Pinata: [https://gateway.pinata.cloud/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://gateway.pinata.cloud/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
 * dweb.link: [https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9](https://dweb.link/ipns/k51qzi5uqu5dii8e5k7q6qpbz91or4gjluu2egnrtm6lkhb15lwok3a0ylxqf9)
 
-**Assumption:** The instance runs in Oracle Cloud using the terraform script below,
+**Assumption:** The instance runs in Oracle Cloud using the Terraform script below,
 * terraform__oci-instance-2
     * GitHub: [github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2)
     * Codeberg: [codeberg.org/k3karthic/terraform__oci-instance-2](https://codeberg.org/k3karthic/terraform__oci-instance-2)
