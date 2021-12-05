@@ -38,7 +38,7 @@ All target instances must have the freeform tag `ipfs_service: yes`.
 ## Playbook Configuration
 
 1. Update `inventory/oracle.oci.yml`,
-    1. specify the region where you have deployed your server on Oracle Cloud
+    1. Specify the region where you have deployed your server on Oracle Cloud
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File)
 1. Set username and SSH authentication in `inventory/group_vars/`
 
