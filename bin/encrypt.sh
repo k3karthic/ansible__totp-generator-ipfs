@@ -20,3 +20,4 @@ for f in $FILES; do
 done
 
 encrypt "files/totp.key"
+encrypt inventory/group_vars/tag_ipfs_service\=yes.yml
