@@ -1,2 +1,6 @@
 ipfs_key_id: "XXXX"
 ipfs_key_name: "keyname"
+infura_project_id: "<project id>"
+infura_project_secret: "<project secret>"
+pinata_api_key: "<api key>"
+pinata_secret_api_key: "<secret api key>"
