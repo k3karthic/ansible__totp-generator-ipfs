@@ -1,15 +1,15 @@
 ---
-- name: install deploy script
+- name: Install deploy script
   hosts: all
 
   tasks:
-    - name: update repositories
+    - name: Update repositories
       become: true
       ansible.builtin.apt:
           cache_valid_time: 86400
           update_cache: yes
 
-    - name: install dependencies
+    - name: Install dependencies
       become: true
       ansible.builtin.apt:
         name: "{{ item }}"
@@ -18,55 +18,55 @@
         - wget
         - curl
 
-    - name: copy ipfs key
+    - name: Copy ipfs key
       ansible.builtin.copy:
         src: "{{ ipfs_key_name }}.key"
         dest: /tmp/totp.key
 
-    - name: copy ipfs key import script
+    - name: Copy ipfs key import script
       ansible.builtin.template:
         src: import_ipfs_key.sh.j2
         dest: /tmp/import_ipfs_key.sh
         mode: "0700"
 
-    - name: import ipfs key
+    - name: Import ipfs key
       ansible.builtin.command:
         cmd: /tmp/import_ipfs_key.sh
 
-    - name: cleanup ipfs key
+    - name: Cleanup ipfs key
       ansible.builtin.file:
         path: "/tmp/{{ ipfs_key_name }}.key"
         state: absent
 
-    - name: cleanup ipfs key import script
+    - name: Cleanup ipfs key import script
       ansible.builtin.file:
         path: /tmp/import_ipfs_key.sh
         state: absent
 
-    - name: create bin directory
+    - name: Create bin directory
       ansible.builtin.file:
         path: "/home/{{ ansible_ssh_user }}/bin"
         state: directory
 
-    - name: copy deploy script
+    - name: Copy deploy script
       ansible.builtin.template:
         src: publish_totp_ipfs.sh.j2
         dest: "/home/{{ ansible_ssh_user }}/bin/publish_totp_ipfs.sh"
         mode: "0700"
 
-    - name: cronjob to refresh cloudflare gateway
+    - name: Cronjob to refresh cloudflare gateway
       ansible.builtin.cron:
         name: "totp ipfs refresh cloudflare"
         job: "curl -s https://cloudflare-ipfs.com/ipns/{{ ipfs_key_id }} > /dev/null"
         special_time: "hourly"
 
-    - name: cronjob to refresh ipfs.io gateway
+    - name: Cronjob to refresh ipfs.io gateway
       ansible.builtin.cron:
         name: "totp ipfs refresh ipfs.io"
         job: "curl -s https://gateway.ipfs.io/ipns/{{ ipfs_key_id }} > /dev/null"
         special_time: "hourly"
 
-    - name: cronjob to refresh infura-ipfs.io gateway
+    - name: Cronjob to refresh infura-ipfs.io gateway
       ansible.builtin.cron:
         name: "totp ipfs refresh infura-ipfs.io"
         job: "curl -s https://infura-ipfs.io/ipns/{{ ipfs_key_id }} > /dev/null"
