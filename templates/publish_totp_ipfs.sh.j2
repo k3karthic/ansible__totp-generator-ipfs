@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-INFURA_PROJECT_ID="{{ infura_project_id }}"
-INFURA_PROJECT_SECRET="{{ infura_project_secret }}"
-
 ##
 ## Get previous version
 ##
@@ -17,11 +14,6 @@ fi
 ##
 
 ipfs pin rm $OLD_HASH
-if [ $? -ne 0 ]; then
-	exit
-fi
-
-curl -X POST -u "$INFURA_PROJECT_ID:$INFURA_PROJECT_SECRET" "https://ipfs.infura.io:5001/api/v0/pin/rm?arg=$OLD_HASH"
 if [ $? -ne 0 ]; then
 	exit
 fi
@@ -54,11 +46,6 @@ fi
 ##
 
 ipfs pin add $NEW_HASH
-if [ $? -ne 0 ]; then
-	exit
-fi
-
-curl -X POST -u "$INFURA_PROJECT_ID:$INFURA_PROJECT_SECRET" "https://ipfs.infura.io:5001/api/v0/pin/add?arg=$NEW_HASH"
 if [ $? -ne 0 ]; then
 	exit
 fi
