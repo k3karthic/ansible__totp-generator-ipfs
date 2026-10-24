@@ -6,16 +6,18 @@
 
 OLD_HASH=$( ipfs name resolve {{ ipfs_key_id }} | sed 's%/ipfs/%%' )
 if [ $? -ne 0 ]; then
-	exit
+        exit
 fi
 
 ##
-## Unpin previous version
+## Unpin previous version (if pinned)
 ##
 
-ipfs pin rm $OLD_HASH
-if [ $? -ne 0 ]; then
-	exit
+if ipfs pin ls $OLD_HASH >/dev/null 2>&1; then
+        ipfs pin rm $OLD_HASH
+        if [ $? -ne 0 ]; then
+                exit
+        fi
 fi
 
 ##
@@ -24,12 +26,12 @@ fi
 
 cd /tmp
 if [ -f index.html ]; then
-	rm index.html
+        rm index.html
 fi
 
 wget --quiet https://totp.maverickgeek.xyz/index.html
 if [ $? -ne 0 ]; then
-	exit
+        exit
 fi
 
 ##
@@ -38,7 +40,7 @@ fi
 
 NEW_HASH=$( ipfs add --quiet index.html | sed 's/added //' | sed 's/ index.\html//' )
 if [ $? -ne 0 ]; then
-	exit
+        exit
 fi
 
 ##
@@ -47,7 +49,7 @@ fi
 
 ipfs pin add $NEW_HASH
 if [ $? -ne 0 ]; then
-	exit
+        exit
 fi
 
 ##
@@ -56,7 +58,7 @@ fi
 
 ipfs name publish --key={{ ipfs_key_name }} $NEW_HASH
 if [ $? -ne 0 ]; then
-	exit
+        exit
 fi
 
 ##
@@ -64,5 +66,5 @@ fi
 ##
 
 if [ -f /tmp/index.html ]; then
-	rm /tmp/index.html
+        rm /tmp/index.html
 fi
